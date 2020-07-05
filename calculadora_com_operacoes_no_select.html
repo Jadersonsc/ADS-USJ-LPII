@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Calculadora Com Operações No Select</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark navegacao">
+
+        <h1 style="color: aqua;">CALCULADORA COM OPERAÇÕES USANDO VUEJS</h1>
+    
+    
+    <div class="container" id="calc_app">
+        <form>
+            <div class="form-group">
+                <label for="numero1" style="color: aqua;">Primeiro Número:</label>
+                <input type="text" id="numero1" name="numero1" v-model.number="numero1" />
+            </div>
+
+            <select v-model="operacao">
+                <option value="+">SOMAR</option>
+                <option value="-">SUBTRAIR</option>
+                <option value="*">MULTIPLICAR</option>
+                <option value="/">DIVIDIR</option>
+            </select>
+
+            <br>
+            <br>
+
+            <div class="form-group">
+                <label for="numero2" style="color: aqua;">Segundo Número:</label>
+                <input type="text" id="numero2" name="numero2" v-model.number="numero2" />
+            </div>
+
+            
+            <button class="btn btn-success" v-on:click.prevent="calcular()">CALCULAR</button>
+
+            <br>
+            <br>
+
+            <div class="form-group">
+                <label for="resultado" style="color: aqua;">Resultado</label>
+                <input type="text" id="resultado" name="resultado" v-model="resultado" />
+            </div>
+        </form> 
+    </div>
+    
+</nav>
+    <script>
+        var calc_app = new Vue ({
+            el: '#calc_app',
+            data: {
+                numero1: null,
+                numero2: null,
+                operacao: '',
+                resultado: null
+            },
+            methods: {
+                calcular: function() {
+                    switch (this.operacao) {
+                        case '+':
+                            this.resultado = this.numero1 + this.numero2;
+                            break;
+                            case '-':
+                            this.resultado = this.numero1 - this.numero2;
+                            break;
+                            case '*':
+                            this.resultado = this.numero1 * this.numero2;
+                            break;
+                            case '/':
+                            this.resultado = this.numero1 / this.numero2;
+                            break;   
+                        default:
+                            break;
+                    }   
+                }
+            }
+        })
+    </script>
+    
+    
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>    
+</body>
+</html>
